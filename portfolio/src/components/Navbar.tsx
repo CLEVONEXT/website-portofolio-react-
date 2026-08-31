@@ -32,7 +32,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('home')}
               className="text-2xl font-bold text-accent hover:opacity-80 transition-opacity"
             >
-              {siteConfig.name.split(' ')[0][0]}
+              Portfolio
             </button>
           </div>
 
