@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Theme variables ===== */
+:root,
+[data-theme='dark'] {
+  --bg-base: #16181d;
+  --bg-surface: #1e2126;
+  --bg-elevated: #262a31;
+  --border-soft: rgba(148, 163, 184, 0.12);
+  --text-strong: #e8eaed;
+  --text-body: #b6bcc4;
+  --text-muted: #8a919b;
+  --accent: #7fa8a0;
+  --accent-strong: #9dbfba;
+  --accent-soft: rgba(127, 168, 160, 0.12);
+  --scroll-track: #1e2126;
+  --scroll-thumb: #3c424b;
+}
+
+[data-theme='light'] {
+  --bg-base: #f4f4f2;
+  --bg-surface: #ffffff;
+  --bg-elevated: #eaeae6;
+  --border-soft: rgba(20, 30, 40, 0.1);
+  --text-strong: #26282b;
+  --text-body: #45494e;
+  --text-muted: #6d7278;
+  --accent: #5f837c;
+  --accent-strong: #4d6e68;
+  --accent-soft: rgba(95, 131, 124, 0.12);
+  --scroll-track: #eaeae6;
+  --scroll-thumb: #c6c6c0;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== Utility classes driven by variables ===== */
+@layer components {
+  .bg-base { background-color: var(--bg-base); }
+  .bg-surface { background-color: var(--bg-surface); }
+  .bg-elevated { background-color: var(--bg-elevated); }
+  .border-soft { border-color: var(--border-soft); }
+  .text-strong { color: var(--text-strong); }
+  .text-body { color: var(--text-body); }
+  .text-muted { color: var(--text-muted); }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background-color: var(--accent); }
+  .bg-accent-soft { background-color: var(--accent-soft); }
+  .border-accent { border-color: var(--accent); }
+  .border-accent-soft { border-color: var(--accent-soft); }
+  .text-gradient {
+    background-image: linear-gradient(90deg, var(--accent-strong), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-glow { box-shadow: 0 0 20px var(--accent-soft); }
+  .shadow-glow-lg { box-shadow: 0 0 40px var(--accent-soft); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 10px;
+}
