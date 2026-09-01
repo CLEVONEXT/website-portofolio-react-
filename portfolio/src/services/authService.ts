@@ -81,6 +81,16 @@ export const authService = {
       throw error;
     }
   },
+
+  // Listen to auth state changes
+  onAuthStateChange(callback: (session: any) => void) {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        callback(session);
+      }
+    );
+    return { data: { subscription } };
+  },
 };
 
 export default authService;

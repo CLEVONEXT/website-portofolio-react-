@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Admin pages are code-split so visitors never download them
 const AdminLogin = lazy(() => import('./pages/AdminLogin'));
@@ -22,9 +23,11 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <Suspense fallback={<div className="min-h-screen bg-base" />}>
-              <AdminDashboard />
-            </Suspense>
+            <ProtectedRoute>
+              <Suspense fallback={<div className="min-h-screen bg-base" />}>
+                <AdminDashboard />
+              </Suspense>
+            </ProtectedRoute>
           }
         />
       </Routes>
