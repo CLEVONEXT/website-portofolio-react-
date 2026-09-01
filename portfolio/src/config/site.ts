@@ -1,10 +1,10 @@
 // Configuration for personal data
-import profileImg from "../assets/hero.png";
+import profileImg from "../assets/hero.jpeg.jpeg";
 
 export const siteConfig = {
   name: "Moh. Arsyil Afif Madani",
   role: "Developer",
-  bio: "Just growing, creating, and enjoying the process.",
+  bio: "",
   location: "Indonesia",
   email: "mozartvincode01@gmail.com",
 

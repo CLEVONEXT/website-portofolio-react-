@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Code, Zap, Users } from 'lucide-react';
 import { siteConfig } from '../config/site';
 import profileService from '../services/profileService';
+import { scrollToSection } from '../lib/utils';
+import ProfileCard from './ProfileCard';
 
 export default function About() {
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
@@ -84,26 +86,21 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Left Side - Image/Profile */}
-          <motion.div variants={itemVariants} className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-transparent rounded-2xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
-            <div className="relative bg-surface border border-soft rounded-2xl p-8">
-              <img
-                src={profileUrl || siteConfig.profileImage}
-                alt={siteConfig.name}
-                className="w-full h-96 object-cover rounded-xl mb-6 hover:scale-105 transition-transform duration-300"
-              />
-              <div className="space-y-4">
-                <div>
-                  <p className="text-muted text-sm uppercase tracking-widest mb-1">Location</p>
-                  <p className="text-strong text-lg font-semibold">{siteConfig.location}</p>
-                </div>
-                <div>
-                  <p className="text-muted text-sm uppercase tracking-widest mb-1">Experience</p>
-                  <p className="text-strong text-lg font-semibold">{siteConfig.about.yearsExperience}+ Years</p>
-                </div>
-              </div>
-            </div>
+          {/* Left Side - Profile Card dengan efek tilt 3D */}
+          <motion.div variants={itemVariants} className="relative flex justify-center">
+            <ProfileCard
+              name={siteConfig.name}
+              handle="arzyuanx"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl={profileUrl || siteConfig.profileImage}
+              showUserInfo
+              enableTilt
+              enableMobileTilt
+              behindGlowEnabled
+              innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+              onContactClick={() => scrollToSection('contact')}
+            />
           </motion.div>
 
           {/* Right Side - Description */}
@@ -124,15 +121,15 @@ export default function About() {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 py-6">
-              <div className="text-center p-4 bg-surface border border-soft rounded-lg hover:border-accent transition-colors">
+              <div className="card text-center p-4 border rounded-lg hover:border-accent transition-colors">
                 <p className="text-3xl font-bold text-accent">{siteConfig.about.yearsExperience}+</p>
                 <p className="text-muted text-sm mt-2">Years Experience</p>
               </div>
-              <div className="text-center p-4 bg-surface border border-soft rounded-lg hover:border-accent transition-colors">
+              <div className="card text-center p-4 border rounded-lg hover:border-accent transition-colors">
                 <p className="text-3xl font-bold text-accent">20+</p>
                 <p className="text-muted text-sm mt-2">Projects Completed</p>
               </div>
-              <div className="text-center p-4 bg-surface border border-soft rounded-lg hover:border-accent transition-colors">
+              <div className="card text-center p-4 border rounded-lg hover:border-accent transition-colors">
                 <p className="text-3xl font-bold text-accent">50+</p>
                 <p className="text-muted text-sm mt-2">Happy Clients</p>
               </div>

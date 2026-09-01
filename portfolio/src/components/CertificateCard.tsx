@@ -17,7 +17,7 @@ export default function CertificateCard({ certificate, onView }: CertificateCard
       transition={{ duration: 0.6 }}
       className="group h-full"
     >
-      <div className="h-full flex flex-col bg-surface border border-soft rounded-xl overflow-hidden hover:border-accent transition-all duration-300 hover:shadow-glow cursor-pointer"
+      <div className="card h-full flex flex-col border rounded-xl overflow-hidden hover:border-accent transition-all duration-300 hover:shadow-glow cursor-pointer"
         onClick={() => onView(certificate)}
       >
         {/* Image Container */}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { LogOut, Plus, Edit2, Trash2, Loader, Check, AlertCircle } from 'lucide-react';
 import type { Certificate } from '../types';
 import { useCertificates } from '../hooks/useCertificates';
@@ -232,13 +232,15 @@ export default function AdminDashboard() {
         </div>
 
         {/* Certificate Form Modal */}
-        {showForm && (
-          <CertificateForm
-            certificate={editingCert}
-            onClose={handleFormClose}
-            onSuccess={handleFormSuccess}
-          />
-        )}
+        <AnimatePresence>
+          {showForm && (
+            <CertificateForm
+              certificate={editingCert}
+              onClose={handleFormClose}
+              onSuccess={handleFormSuccess}
+            />
+          )}
+        </AnimatePresence>
 
         {/* Certificates Table */}
         <div className="bg-surface border border-soft rounded-xl overflow-hidden">

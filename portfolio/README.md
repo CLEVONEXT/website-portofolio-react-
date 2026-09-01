@@ -1,4 +1,4 @@
-# 🚀 Modern Portfolio Website
+﻿﻿# ðŸš€ Modern Portfolio Website
 
 A stunning, modern, and fully functional portfolio website built with React, Vite, TypeScript, Tailwind CSS, and Supabase. Features real-time certificate management with dynamic updates, beautiful animations, and responsive design.
 
@@ -8,15 +8,15 @@ A stunning, modern, and fully functional portfolio website built with React, Vit
 ![Vite](https://img.shields.io/badge/Vite-5.0+-blue?style=flat-square&logo=vite)
 ![Supabase](https://img.shields.io/badge/Supabase-Latest-green?style=flat-square&logo=supabase)
 
-## ✨ Features
+## âœ¨ Features
 
 ### Public Portfolio
-- ⚡ **Lightning Fast** - Optimized with Vite and lazy loading
-- 🎨 **Beautiful Design** - Modern, futuristic, and premium aesthetic
-- 📱 **Fully Responsive** - Perfect on all devices (mobile, tablet, desktop)
-- ✅ **Smooth Animations** - Framer Motion powered transitions
-- 🌙 **Dark Mode** - Elegant dark theme with purple accents
-- 📊 **Multiple Sections**:
+- âš¡ **Lightning Fast** - Optimized with Vite and lazy loading
+- ðŸŽ¨ **Beautiful Design** - Modern, futuristic, and premium aesthetic
+- ðŸ“± **Fully Responsive** - Perfect on all devices (mobile, tablet, desktop)
+- âœ… **Smooth Animations** - Framer Motion powered transitions
+- ðŸŒ™ **Dark Mode** - Elegant dark theme with purple accents
+- ðŸ“Š **Multiple Sections**:
   - Hero section with CTA buttons
   - About section with profile info
   - Skills section with categorized skills
@@ -25,23 +25,23 @@ A stunning, modern, and fully functional portfolio website built with React, Vit
   - Contact footer with social links
 
 ### Admin Dashboard
-- 🔐 **Secure Authentication** - Supabase Auth integration
-- ✏️ **Certificate Management** - Add, edit, delete certificates
-- 📸 **Image Upload** - Drag & drop with preview
-- 🔄 **Real-time Updates** - Supabase Realtime subscriptions
-- 📋 **Certificate Gallery** - Grid view with filtering
-- ⚡ **Instant Sync** - Changes appear on public site immediately
+- ðŸ” **Secure Authentication** - Supabase Auth integration
+- âœï¸ **Certificate Management** - Add, edit, delete certificates
+- ðŸ“¸ **Image Upload** - Drag & drop with preview
+- ðŸ”„ **Real-time Updates** - Supabase Realtime subscriptions
+- ðŸ“‹ **Certificate Gallery** - Grid view with filtering
+- âš¡ **Instant Sync** - Changes appear on public site immediately
 
 ### Technical Highlights
-- 🎯 **TypeScript** - Type-safe code
-- 🎭 **Framer Motion** - Professional animations
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🗄️ **Supabase** - Backend, database, and storage
-- 🚀 **Vercel Ready** - One-click deployment
-- 📦 **Modular Architecture** - Reusable components
-- 🔒 **Row Level Security** - Database-level access control
+- ðŸŽ¯ **TypeScript** - Type-safe code
+- ðŸŽ­ **Framer Motion** - Professional animations
+- ðŸŽ¨ **Tailwind CSS** - Utility-first CSS framework
+- ðŸ—„ï¸ **Supabase** - Backend, database, and storage
+- ðŸš€ **Vercel Ready** - One-click deployment
+- ðŸ“¦ **Modular Architecture** - Reusable components
+- ðŸ”’ **Row Level Security** - Database-level access control
 
-## 🚀 Quick Start
+## ðŸš€ Quick Start
 
 ### Prerequisites
 - Node.js 16+ and npm
@@ -73,22 +73,22 @@ npm run preview
 
 Visit `http://localhost:5173` to see your portfolio!
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
 ```
 src/
-├── components/      # Reusable React components
-├── pages/          # Page components (Home, Admin, etc.)
-├── services/       # API and external services
-├── hooks/          # Custom React hooks
-├── types/          # TypeScript type definitions
-├── config/         # Configuration files
-├── data/           # Static data (projects, skills)
-├── lib/            # Utility functions
-└── App.tsx         # Main app component
+â”œâ”€â”€ components/      # Reusable React components
+â”œâ”€â”€ pages/          # Page components (Home, Admin, etc.)
+â”œâ”€â”€ services/       # API and external services
+â”œâ”€â”€ hooks/          # Custom React hooks
+â”œâ”€â”€ types/          # TypeScript type definitions
+â”œâ”€â”€ config/         # Configuration files
+â”œâ”€â”€ data/           # Static data (projects, skills)
+â”œâ”€â”€ lib/            # Utility functions
+â””â”€â”€ App.tsx         # Main app component
 ```
 
-## 🎨 Customization
+## ðŸŽ¨ Customization
 
 ### Edit Personal Info
 Open `src/config/site.ts` and update:
@@ -110,19 +110,34 @@ Edit `src/data/projects.ts` to add your portfolio projects.
 ### Modify Skills
 Edit `src/data/skills.ts` to list your technical skills.
 
-## 🔐 Admin Panel
+### Customize Bio (Code Style)
+Bio di Hero ditampilkan sebagai code yang mengetik otomatis.
+Edit isi `CODE_LINES` di `src/components/CodeBio.tsx`:
+```typescript
+const CODE_LINES = [
+  `const developer = {`,
+  `  name: 'Your Name',`,
+  `  // ...dst`,
+];
+```
+
+### Customize ProfileCard
+Kartu profil di About memakai `ProfileCard` (React Bits).
+Atur di `src/components/About.tsx` — name, title, handle, avatar, gradient, dan efek tilt.
+
+## ðŸ” Admin Panel
 
 Access the admin panel at `/admin`:
 
 1. **Login** with your Supabase credentials
 2. **Manage Certificates**:
-   - ➕ Add new certificates
-   - ✏️ Edit existing ones
-   - 🗑️ Delete certificates
+   - âž• Add new certificates
+   - âœï¸ Edit existing ones
+   - ðŸ—‘ï¸ Delete certificates
 3. **Upload Images** with drag-and-drop
 4. **Changes sync instantly** to the public site
 
-## 🌍 Deployment
+## ðŸŒ Deployment
 
 ### Deploy to Vercel (Recommended)
 
@@ -141,24 +156,24 @@ Or manually:
 
 See [SETUP.md](./SETUP.md) for detailed deployment guide.
 
-## 📊 Performance
+## ðŸ“Š Performance
 
-- ✅ Lighthouse Score: 90+
-- ✅ Fully responsive
-- ✅ Mobile optimized
-- ✅ Lazy loading images
-- ✅ Code splitting
-- ✅ Minified and compressed
+- âœ… Lighthouse Score: 90+
+- âœ… Fully responsive
+- âœ… Mobile optimized
+- âœ… Lazy loading images
+- âœ… Code splitting
+- âœ… Minified and compressed
 
-## 🔒 Security
+## ðŸ”’ Security
 
-- 🔐 Supabase Row Level Security (RLS)
-- 🔐 Environment variables protected
-- 🔐 No sensitive data in frontend
-- 🔐 Authenticated admin routes
-- 🔐 Input validation and sanitization
+- ðŸ” Supabase Row Level Security (RLS)
+- ðŸ” Environment variables protected
+- ðŸ” No sensitive data in frontend
+- ðŸ” Authenticated admin routes
+- ðŸ” Input validation and sanitization
 
-## 📚 Technologies
+## ðŸ“š Technologies
 
 - **Frontend**: React 18, TypeScript
 - **Build Tool**: Vite
@@ -172,7 +187,7 @@ See [SETUP.md](./SETUP.md) for detailed deployment guide.
 - **Deployment**: Vercel
 - **Routing**: React Router
 
-## 🐛 Troubleshooting
+## ðŸ› Troubleshooting
 
 ### Build fails
 ```bash
@@ -193,15 +208,15 @@ npm install  # Reinstall
 
 See [SETUP.md](./SETUP.md) for more troubleshooting tips.
 
-## 📝 License
+## ðŸ“ License
 
 This project is open source and available under the MIT License.
 
-## 🤝 Contributing
+## ðŸ¤ Contributing
 
 Feel free to fork this project and submit pull requests for any improvements.
 
-## 💬 Support
+## ðŸ’¬ Support
 
 For questions or issues:
 1. Check [SETUP.md](./SETUP.md) troubleshooting section
@@ -209,18 +224,21 @@ For questions or issues:
 3. Check [Vite docs](https://vitejs.dev)
 4. Review [React docs](https://react.dev)
 
-## 🎉 Credits
+## ðŸŽ‰ Credits
 
-Built with ❤️ using:
+Built with â¤ï¸ using:
 - React & React Router
 - Vite
 - TypeScript
 - Tailwind CSS
 - Framer Motion
 - Supabase
+- Ogl (WebGL shaders, untuk GhostFibers background)
 
 ---
 
-**Ready to showcase your work? Deploy now! 🚀**
+**Ready to showcase your work? Deploy now! ðŸš€**
 
 For detailed setup instructions, see [SETUP.md](./SETUP.md)
+
+

@@ -53,7 +53,13 @@ export const profileService = {
   // Save profile image URL to the site_profile table (authenticated only)
   async saveProfile(imageUrl: string): Promise<SiteProfile | null> {
     try {
-      const existing = await profileService.getProfile();
+      const { data: existing, error: fetchError } = await supabase
+        .from("site_profile")
+        .select("*")
+        .limit(1)
+        .maybeSingle();
+
+      if (fetchError) throw fetchError;
 
       if (existing) {
         const { data, error } = await supabase

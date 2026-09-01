@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, ArrowUp } from 'lucide-react';
@@ -8,20 +8,21 @@ import { siteConfig } from '../config/site';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
-  const [, setClickCount] = useState(0);
+  const clicks = useRef(0);
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Secret admin access: click the name 3x quickly
   const handleNameClick = () => {
-    setClickCount((prev) => {
-      const next = prev + 1;
-      if (next >= 3) {
-        navigate('/admin');
-        return 0;
-      }
-      // Reset counter if user waits too long between clicks
-      setTimeout(() => setClickCount((c) => (c === next ? 0 : c)), 1500);
-      return next;
-    });
+    clicks.current += 1;
+    if (clicks.current >= 3) {
+      clicks.current = 0;
+      navigate('/admin');
+      return;
+    }
+    if (clickTimer.current) clearTimeout(clickTimer.current);
+    clickTimer.current = setTimeout(() => {
+      clicks.current = 0;
+    }, 1500);
   };
 
   return (
@@ -59,15 +60,8 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 border border-accent-soft text-accent hover:opacity-80 rounded-lg font-semibold transition-all duration-300"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-5 h-5 mr-2"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6 z M2 9h4v12 H2z" />
-                  <circle cx="4" cy="4" r="2" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
                 </svg>
                 Connect on LinkedIn
               </a>

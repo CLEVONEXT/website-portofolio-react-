@@ -15,6 +15,12 @@
   --accent: #7fa8a0;
   --accent-strong: #9dbfba;
   --accent-soft: rgba(127, 168, 160, 0.12);
+  /* Kartu ter-inversi: di mode gelap, kartu putih */
+  --card-bg: #ffffff;
+  --card-text: #16181d;
+  --card-muted: #4b5563;
+  --card-border: rgba(20, 30, 40, 0.15);
+  --card-accent: #4d6e68;
   --scroll-track: #1e2126;
   --scroll-thumb: #3c424b;
 }
@@ -30,6 +36,12 @@
   --accent: #5f837c;
   --accent-strong: #4d6e68;
   --accent-soft: rgba(95, 131, 124, 0.12);
+  /* Kartu ter-inversi: di mode terang, kartu hitam */
+  --card-bg: #131519;
+  --card-text: #f3f4f6;
+  --card-muted: #b6bcc4;
+  --card-border: rgba(255, 255, 255, 0.14);
+  --card-accent: #9dbfba;
   --scroll-track: #eaeae6;
   --scroll-thumb: #c6c6c0;
 }
@@ -70,6 +82,16 @@ body {
   }
   .shadow-glow { box-shadow: 0 0 20px var(--accent-soft); }
   .shadow-glow-lg { box-shadow: 0 0 40px var(--accent-soft); }
+
+  /* Kartu dengan warna invers terhadap tema */
+  .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+  }
+  .card .text-strong { color: var(--card-text); }
+  .card .text-body { color: var(--card-text); }
+  .card .text-muted { color: var(--card-muted); }
+  .card .text-accent { color: var(--card-accent); }
 }
 
 /* Custom scrollbar */

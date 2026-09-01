@@ -29,7 +29,7 @@ export const useCertificates = () => {
     fetchCertificates();
 
     // Setup realtime subscription
-    const subscription = supabase
+    const channel = supabase
       .channel('certificates-realtime')
       .on(
         'postgres_changes',
@@ -46,7 +46,7 @@ export const useCertificates = () => {
 
     // Cleanup subscription on unmount
     return () => {
-      subscription.unsubscribe();
+      supabase.removeChannel(channel);
     };
   }, [fetchCertificates]);
 

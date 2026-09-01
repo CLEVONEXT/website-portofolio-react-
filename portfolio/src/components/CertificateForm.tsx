@@ -63,9 +63,12 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
 
     const droppedFile = e.dataTransfer.files?.[0];
     if (droppedFile) {
-      handleFileChange({
-        target: { files: [droppedFile] },
-      } as any);
+      const mockEvent = new Event('change', { bubbles: true });
+      Object.defineProperty(mockEvent, 'target', {
+        value: { files: [droppedFile] },
+        enumerable: true,
+      });
+      handleFileChange(mockEvent as any as React.ChangeEvent<HTMLInputElement>);
     }
   };
 

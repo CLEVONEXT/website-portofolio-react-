@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 // Bagian bawah halaman di-code-split agar bundle awal ringan
 const About = lazy(() => import('../components/About'));
 const Skills = lazy(() => import('../components/Skills'));
+const Experience = lazy(() => import('../components/Experience'));
 const Projects = lazy(() => import('../components/Projects'));
 const Certificates = lazy(() => import('../components/Certificates'));
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Suspense fallback={<SectionFallback />}>
         <About />
         <Skills />
+        <Experience />
         <Projects />
         <Certificates />
       </Suspense>

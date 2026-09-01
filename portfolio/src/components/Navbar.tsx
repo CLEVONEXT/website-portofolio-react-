@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { scrollToSection } from '../lib/utils';
 import { siteConfig } from '../config/site';
-import { useTheme } from '../theme/ThemeProvider';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
     { name: 'Home', id: 'home' },
@@ -32,7 +30,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('home')}
               className="text-2xl font-bold text-accent hover:opacity-80 transition-opacity"
             >
-              Portfolio
+              Portofolio
             </button>
           </div>
 
@@ -51,28 +49,14 @@ export default function Navbar() {
               href={siteConfig.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-accent hover:opacity-90 text-[#16181d] rounded-lg transition-all text-sm font-medium"
+              className="inline-flex items-center px-4 py-2 bg-accent hover:opacity-90 text[#16181d] rounded-lg transition-all text-sm font-medium"
             >
               GitHub
             </a>
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="p-2 rounded-lg bg-elevated text-accent hover:opacity-80 transition-opacity"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
           </div>
 
-          {/* Theme + Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="p-2 rounded-lg bg-elevated text-accent"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-muted hover:text-strong transition-colors"
