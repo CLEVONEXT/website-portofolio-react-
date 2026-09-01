@@ -8,6 +8,7 @@ import certificateService from '../services/certificateService';
 import authService from '../services/authService';
 import profileService from '../services/profileService';
 import CertificateForm from '../components/CertificateForm';
+import { initializeStorageBuckets } from '../utils/storageSetup';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
+    // Initialize storage on mount
+    initializeStorageBuckets();
     loadProfile();
   }, []);
 
@@ -51,7 +54,7 @@ export default function AdminDashboard() {
     try {
       const url = await profileService.uploadProfileImage(selectedFile);
       if (!url) {
-        setProfileMessage('Failed to upload image');
+        setProfileMessage('Failed to upload image. Please check the file and try again.');
         return;
       }
       const saved = await profileService.saveProfile(url);
@@ -59,8 +62,11 @@ export default function AdminDashboard() {
         setProfileUrl(url);
         setProfileMessage('Profile photo updated successfully');
       } else {
-        setProfileMessage('Failed to save profile');
+        setProfileMessage('Image uploaded but failed to save. Please try again.');
       }
+    } catch (error: any) {
+      console.error("Profile upload error:", error);
+      setProfileMessage(error?.message || 'Failed to upload image. Please try again.');
     } finally {
       setProfileUploading(false);
       if (profileInputRef.current) profileInputRef.current.value = '';

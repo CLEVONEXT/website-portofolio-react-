@@ -27,26 +27,50 @@ export const profileService = {
   // Upload profile image to the "profile" storage bucket
   async uploadProfileImage(file: File): Promise<string | null> {
     try {
+      // Validate file before upload
+      if (!file || file.size === 0) {
+        console.error("File is empty");
+        throw new Error("File is empty");
+      }
+
       const fileExt = (file.name.split(".").pop() || "jpg").toLowerCase();
       const fileName = `profile-${Date.now()}.${fileExt}`;
 
-      const { error: uploadError } = await supabase.storage
+      console.log("Starting upload:", { fileName, fileSize: file.size, fileType: file.type });
+
+      // Upload with proper error handling
+      const { error: uploadError, data: uploadData } = await supabase.storage
         .from("profile")
         .upload(fileName, file, {
-          upsert: false,
+          upsert: true, // Allow overwriting existing file
           contentType: file.type,
         });
 
       if (uploadError) {
-        console.error("Upload error detail:", uploadError.message);
+        console.error("Upload error:", uploadError);
+        // Check if it's a bucket not found error
+        if (uploadError.message?.includes("not found") || uploadError.message?.includes("No such bucket")) {
+          throw new Error("Storage bucket not configured. Please contact admin.");
+        }
         throw uploadError;
       }
 
-      const { data } = supabase.storage.from("profile").getPublicUrl(fileName);
-      return data?.publicUrl || null;
-    } catch (error) {
+      console.log("Upload successful:", uploadData);
+
+      // Get public URL
+      const { data: urlData } = supabase.storage.from("profile").getPublicUrl(fileName);
+      const publicUrl = urlData?.publicUrl;
+
+      if (!publicUrl) {
+        throw new Error("Failed to generate public URL");
+      }
+
+      console.log("Public URL generated:", publicUrl);
+      return publicUrl;
+    } catch (error: any) {
       console.error("Error uploading profile image:", error);
-      return null;
+      // Return error message to be shown to user
+      throw new Error(error?.message || "Failed to upload image. Please try again.");
     }
   },
 
