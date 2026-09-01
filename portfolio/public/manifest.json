@@ -1,0 +1,27 @@
+{
+  "name": "Arsyil Portfolio",
+  "short_name": "Arsyil",
+  "description": "A passionate developer showcasing innovative projects, technical skills, and professional certifications.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#863bff",
+  "background_color": "#10151a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
