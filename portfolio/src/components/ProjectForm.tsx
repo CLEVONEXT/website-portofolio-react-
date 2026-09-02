@@ -1,43 +1,41 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { X, Upload, Loader } from 'lucide-react';
-import type { Certificate } from '../types';
-import certificateService from '../services/certificateService';
+import type { Project } from '../types';
+import projectService from '../services/projectService';
 
-interface CertificateFormProps {
-  certificate?: Certificate | null;
+interface ProjectFormProps {
+  project?: Project | null;
   onClose: () => void;
   onSuccess: () => void;
 }
 
-export default function CertificateForm({ certificate, onClose, onSuccess }: CertificateFormProps) {
+export default function ProjectForm({ project, onClose, onSuccess }: ProjectFormProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [preview, setPreview] = useState<string>(certificate?.image_url || '');
+  const [preview, setPreview] = useState<string>(project?.image || '');
   const [file, setFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState({
-    title: certificate?.title || '',
-    issuer: certificate?.issuer || '',
-    description: certificate?.description || '',
-    category: certificate?.category || '',
-    issue_date: certificate?.issue_date?.split('T')[0] || '',
-    certificate_url: certificate?.certificate_url || '',
+    title: project?.title || '',
+    description: project?.description || '',
+    github: project?.github || '',
+    demo: project?.demo || '',
+    featured: project?.featured || false,
+    technologies: (project?.technologies || []).join(', '),
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (!selectedFile) return;
 
-    // Validate file type
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(selectedFile.type)) {
       setError('Please upload a JPG, PNG, or WebP image');
       return;
     }
 
-    // Validate file size (max 5MB)
     if (selectedFile.size > 5 * 1024 * 1024) {
       setError('File size must be less than 5MB');
       return;
@@ -73,12 +71,12 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
@@ -88,22 +86,19 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
     setLoading(true);
 
     try {
-      // Validate required fields
-      if (!formData.title || !formData.issuer || !formData.category || !formData.issue_date) {
-        setError('Please fill in all required fields');
+      if (!formData.title || !formData.description) {
+        setError('Please fill in title and description');
         setLoading(false);
         return;
       }
 
       let imageUrl = preview;
 
-      // Upload new file if provided
       if (file) {
         let uploadedUrl: string | null = null;
         try {
-          uploadedUrl = await certificateService.uploadFile(file);
+          uploadedUrl = await projectService.uploadFile(file);
         } catch (uploadErr) {
-          // Tampilkan penyebab asli dari Supabase, bukan pesan generik
           setError(
             uploadErr instanceof Error
               ? `Gagal upload gambar: ${uploadErr.message}`
@@ -120,34 +115,34 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
         imageUrl = uploadedUrl;
       }
 
-      // Check if image URL is available
       if (!imageUrl) {
-        setError('Please upload a certificate image');
+        setError('Please upload a project image');
         setLoading(false);
         return;
       }
 
-      const certData = {
+      const projectData = {
         title: formData.title,
-        issuer: formData.issuer,
         description: formData.description,
-        category: formData.category,
-        issue_date: formData.issue_date,
-        certificate_url: formData.certificate_url,
-        image_url: imageUrl,
+        github: formData.github || undefined,
+        demo: formData.demo || undefined,
+        featured: formData.featured,
+        image: imageUrl,
+        technologies: formData.technologies
+          .split(',')
+          .map((t) => t.trim())
+          .filter(Boolean),
       };
 
-      if (certificate?.id) {
-        // Update
-        await certificateService.updateCertificate(certificate.id, certData);
+      if (project?.id) {
+        await projectService.updateProject(project.id, projectData);
       } else {
-        // Create
-        await certificateService.createCertificate(certData);
+        await projectService.createProject(projectData);
       }
 
       onSuccess();
     } catch (err) {
-      setError('Failed to save certificate');
+      setError('Failed to save project');
       console.error('Form error:', err);
     } finally {
       setLoading(false);
@@ -172,7 +167,7 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
         {/* Header */}
         <div className="sticky top-0 bg-surface/95 border-b border-soft px-8 py-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-strong">
-            {certificate ? 'Edit Certificate' : 'Add Certificate'}
+            {project ? 'Edit Project' : 'Add Project'}
           </h2>
           <button
             onClick={onClose}
@@ -194,7 +189,7 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
           {/* Image Upload */}
           <div>
             <label className="block text-sm font-semibold text-strong mb-4">
-              Certificate Image *
+              Project Image *
             </label>
 
             {preview && (
@@ -229,7 +224,7 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
           {/* Title */}
           <div>
             <label className="block text-sm font-semibold text-strong mb-2">
-              Certificate Title *
+              Project Title *
             </label>
             <input
               type="text"
@@ -238,92 +233,84 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
               onChange={handleInputChange}
               required
               className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
-              placeholder="e.g., AWS Solutions Architect"
-            />
-          </div>
-
-          {/* Issuer */}
-          <div>
-            <label className="block text-sm font-semibold text-strong mb-2">
-              Issuer *
-            </label>
-            <input
-              type="text"
-              name="issuer"
-              value={formData.issuer}
-              onChange={handleInputChange}
-              required
-              className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
-              placeholder="e.g., Amazon Web Services"
+              placeholder="e.g., E-Commerce Platform"
             />
           </div>
 
           {/* Description */}
           <div>
             <label className="block text-sm font-semibold text-strong mb-2">
-              Description
+              Description *
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleInputChange}
               rows={3}
+              required
               className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
-              placeholder="Brief description of the certificate..."
+              placeholder="Brief description of the project..."
             />
           </div>
 
-          {/* Category & Date */}
+          {/* Technologies */}
+          <div>
+            <label className="block text-sm font-semibold text-strong mb-2">
+              Technologies <span className="text-muted font-normal">(dipisah koma)</span>
+            </label>
+            <input
+              type="text"
+              name="technologies"
+              value={formData.technologies}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
+              placeholder="e.g., React, Node.js, MongoDB"
+            />
+          </div>
+
+          {/* GitHub & Demo */}
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-strong mb-2">
-                Category *
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
-              >
-                <option value="">Select a category</option>
-                <option value="Programming">Programming</option>
-                <option value="Cloud">Cloud</option>
-                <option value="Design">Design</option>
-                <option value="DevOps">DevOps</option>
-                <option value="Data">Data</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-strong mb-2">
-                Issue Date *
+                GitHub URL
               </label>
               <input
-                type="date"
-                name="issue_date"
-                value={formData.issue_date}
+                type="url"
+                name="github"
+                value={formData.github}
                 onChange={handleInputChange}
-                required
                 className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
+                placeholder="https://github.com/..."
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-strong mb-2">
+                Demo URL
+              </label>
+              <input
+                type="url"
+                name="demo"
+                value={formData.demo}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
+                placeholder="https://..."
               />
             </div>
           </div>
 
-          {/* Certificate URL */}
-          <div>
-            <label className="block text-sm font-semibold text-strong mb-2">
-              Certificate URL
-            </label>
+          {/* Featured */}
+          <div className="flex items-center gap-3">
             <input
-              type="url"
-              name="certificate_url"
-              value={formData.certificate_url}
+              type="checkbox"
+              name="featured"
+              id="featured"
+              checked={formData.featured}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-elevated border border-soft text-strong rounded-lg focus:outline-none focus:border-accent transition-colors"
-              placeholder="https://..."
+              className="w-4 h-4 accent-[var(--accent)]"
             />
+            <label htmlFor="featured" className="text-sm font-medium text-strong">
+              Tandai sebagai Featured Project
+            </label>
           </div>
 
           {/* Actions */}
@@ -346,7 +333,7 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
                   Saving...
                 </>
               ) : (
-                certificate ? 'Update Certificate' : 'Add Certificate'
+                project ? 'Update Project' : 'Add Project'
               )}
             </button>
           </div>
@@ -355,4 +342,3 @@ export default function CertificateForm({ certificate, onClose, onSuccess }: Cer
     </motion.div>
   );
 }
-

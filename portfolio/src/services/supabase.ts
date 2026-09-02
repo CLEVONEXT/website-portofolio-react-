@@ -9,7 +9,11 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    persistSession: false,
+    // Simpan sesi di localStorage agar token login admin tetap ada
+    // (dibutuhkan RLS storage: auth.role() = 'authenticated')
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false,
   },
 });
 

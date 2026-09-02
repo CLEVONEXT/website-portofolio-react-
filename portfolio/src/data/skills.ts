@@ -3,11 +3,11 @@ import type { Skill } from '../types';
 export const skills: Skill[] = [
   {
     category: 'Frontend',
-    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    items: ['HTML', 'CSS' , 'React', 'Tailwind',],
   },
   {
     category: 'Backend',
-    items: ['Node.js', 'Express', 'PHP', 'Laravel', 'PostgreSQL', 'MySQL', 'MongoDB', 'Supabase'],
+    items: ['PHP', 'Laravel', 'PostgreSQL', 'MySQL', 'Supabase'],
   },
   {
     category: 'Tools & DevOps',
@@ -15,7 +15,7 @@ export const skills: Skill[] = [
   },
   {
     category: 'IoT & Embedded',
-    items: ['ESP32', 'ESP8266', 'Arduino', 'Sensors', 'MQTT', 'Embedded C'],
+    items: ['IoT Development', 'Automation','Embedded Systems',],
   },
 ];
 

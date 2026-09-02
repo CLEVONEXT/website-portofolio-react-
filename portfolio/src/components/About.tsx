@@ -38,18 +38,18 @@ export default function About() {
   const features = [
     {
       icon: Code,
-      title: 'Clean Code',
+      title: 'DEVELOPER',
       description: 'Writing maintainable, scalable, and efficient code that follows best practices.',
     },
     {
       icon: Zap,
-      title: 'High Performance',
-      description: 'Creating fast, responsive applications with optimized load times.',
+      title: 'IoT Enthusiast',
+      description: 'Building innovative IoT solutions that connect the physical world with intelligent technology.',
     },
     {
       icon: Users,
-      title: 'User Focused',
-      description: 'Designing intuitive interfaces that provide excellent user experiences.',
+      title: 'Creative Technologist',
+      description: 'Combining technology and creativity to transform ideas into innovative, functional, and impactful digital experiences.',
     },
   ];
 
@@ -113,9 +113,7 @@ export default function About() {
                 {siteConfig.about.description}
               </p>
               <p className="text-muted text-base leading-relaxed">
-                I love turning ideas into reality through code and design. With expertise in both
-                frontend and backend technologies, I create solutions that are not only functional
-                but also beautiful and performant.
+               I love exploring new ideas, solving problems, and turning creative concepts into something meaningful and real. I’m always curious to learn, experiment with new possibilities, and challenge myself to create things that are useful, engaging, and thoughtfully designed.
               </p>
             </div>
 
@@ -126,13 +124,10 @@ export default function About() {
                 <p className="text-muted text-sm mt-2">Years Experience</p>
               </div>
               <div className="card text-center p-4 border rounded-lg hover:border-accent transition-colors">
-                <p className="text-3xl font-bold text-accent">20+</p>
+                <p className="text-3xl font-bold text-accent">10+</p>
                 <p className="text-muted text-sm mt-2">Projects Completed</p>
               </div>
-              <div className="card text-center p-4 border rounded-lg hover:border-accent transition-colors">
-                <p className="text-3xl font-bold text-accent">50+</p>
-                <p className="text-muted text-sm mt-2">Happy Clients</p>
-              </div>
+            
             </div>
           </motion.div>
         </motion.div>

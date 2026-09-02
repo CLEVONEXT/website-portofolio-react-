@@ -103,26 +103,28 @@ export const certificateService = {
 
   // Upload file to storage
   async uploadFile(file: File): Promise<string | null> {
-    try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `certificates/${fileName}`;
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
+    const filePath = `certificates/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from('certificates')
-        .upload(filePath, file);
+    const { error: uploadError } = await supabase.storage
+      .from('certificates')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false,
+      });
 
-      if (uploadError) throw uploadError;
-
-      const { data } = supabase.storage
-        .from('certificates')
-        .getPublicUrl(filePath);
-
-      return data?.publicUrl || null;
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      return null;
+    if (uploadError) {
+      // Lempar error asli Supabase agar penyebabnya terlihat
+      // di UI (misal: bucket tidak ada / RLS policy belum diset)
+      throw new Error(uploadError.message);
     }
+
+    const { data } = supabase.storage
+      .from('certificates')
+      .getPublicUrl(filePath);
+
+    return data?.publicUrl || null;
   },
 };
 

@@ -162,7 +162,7 @@ index.html
 
 ## Quick Checklist
 
-- [ ] Add `public/og-image.png` (1200x630)
+- [x] Add `public/og-image.png` (1600x1600 JPEG, sudah dicopy dari assets)
 - [ ] Test OG preview di Facebook Debugger
 - [ ] Test Twitter Card preview
 - [ ] Setup Google Search Console

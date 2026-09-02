@@ -113,8 +113,7 @@ export default function Skills() {
         >
           <h3 className="text-2xl font-bold text-strong mb-3">Always Learning</h3>
           <p className="text-muted max-w-2xl mx-auto">
-            Saya terus memperluas skillset dan mengikuti teknologi serta praktik terbaru dalam
-            pengembangan web. Ada ide? Mari wujudkan bersama!
+           saya hanya gabut
           </p>
         </motion.div>
       </div>

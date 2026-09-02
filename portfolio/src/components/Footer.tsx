@@ -174,7 +174,7 @@ export default function Footer() {
                 onClick={handleNameClick}
                 className="text-muted text-sm mb-4 sm:mb-0 cursor-default select-none"
               >
-                © {currentYear} {siteConfig.name}. All rights reserved. Crafted with passion using React, Vite & Tailwind CSS.
+                © {currentYear} {siteConfig.name}. All rights reserved.
               </p>
 
               <button

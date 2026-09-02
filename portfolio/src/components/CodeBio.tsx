@@ -33,11 +33,11 @@ function tokenizeLine(line: string): Token[] {
 const CODE_LINES = [
   `const developer = {`,
   `  name: 'Moh. Arsyil Afif Madani',`,
-  `  role: 'Full-Stack Developer',`,
+  `  role: 'Developer',`,
   `  location: 'Indonesia',`,
-  `  stack: ['React', 'TypeScript', 'Node.js', 'Supabase'],`,
+  `  email: 'mozartvincode01@gmail.com`,
   `  passion: 'turning ideas into real-world projects',`,
-  `  currentlyLearning: ['IoT', 'Embedded Systems'],`,
+  `  currentlyLearning: ['IoT', 'software engineering'],`,
   ``,
   `  sayHi() {`,
   `    console.log("Thanks for visiting my portfolio!");`,
@@ -82,11 +82,11 @@ export default function CodeBio() {
           </span>
         </div>
 
-        <pre className="p-5 overflow-x-auto text-sm sm:text-base font-mono leading-relaxed">
+        <pre className="p-3 sm:p-5 overflow-x-auto text-[10px] sm:text-sm md:text-base font-mono leading-relaxed">
           <code>
             {visibleLines.map((line, i) => (
               <div key={i} className="flex">
-                <span className="select-none w-8 mr-4 text-right text-gray-600 flex-shrink-0">
+                <span className="select-none w-5 sm:w-8 mr-2 sm:mr-4 text-right text-gray-600 flex-shrink-0">
                   {i + 1}
                 </span>
                 <span className="whitespace-pre">

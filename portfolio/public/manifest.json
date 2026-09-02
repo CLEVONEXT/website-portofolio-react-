@@ -1,7 +1,7 @@
 {
   "name": "Arsyil Portfolio",
   "short_name": "Arsyil",
-  "description": "A passionate developer showcasing innovative projects, technical skills, and professional certifications.",
+  "description": "Portofolio Moh. Arsyil Afif Madani",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -10,18 +10,18 @@
   "background_color": "#10151a",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.jpeg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ],
   "categories": ["business", "productivity"],
   "screenshots": [
     {
       "src": "/og-image.png",
-      "sizes": "1200x630",
-      "type": "image/png",
-      "form_factor": "wide"
+      "sizes": "1600x1600",
+      "type": "image/jpeg"
     }
   ]
 }

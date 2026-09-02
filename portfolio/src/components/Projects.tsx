@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import { projects } from '../data/projects';
+import { projects as staticProjects } from '../data/projects';
+import { useProjects } from '../hooks/useProjects';
 
 export default function Projects() {
+  const { projects: dbProjects } = useProjects();
+  // Tampilkan data dari database jika ada, jika tidak fallback ke data statis
+  const projects = dbProjects.length > 0 ? dbProjects : staticProjects;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

@@ -1,27 +1,35 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Cpu } from 'lucide-react';
+import { Code2, Bot, Cloud, Trophy } from 'lucide-react';
+
 
 const timeline = [
   {
-    icon: Briefcase,
-    year: '2023 — Sekarang',
-    title: 'Freelance Web Developer',
+    icon: Code2,
+    year: '1.',
+    title: 'Web Development',
     description:
-      'Membangun website dan aplikasi web untuk berbagai klien menggunakan React, Tailwind CSS, dan backend modern seperti Supabase & Laravel.',
+      'Building responsive and interactive websites using modern frontend technologies, with a focus on clean design and user experience.',
   },
   {
-    icon: Cpu,
-    year: '2022 — 2023',
-    title: 'IoT & Embedded Projects',
+    icon: Bot,
+    year: '2.',
+    title: 'IoT & Robotics',
     description:
-      'Mengerjakan berbagai proyek IoT berbasis ESP32/ESP8266 — mulai dari smart home, monitoring sensor, sampai integrasi MQTT ke dashboard web.',
+      'Developing innovative projects that combine sensors, hardware, and creative problem-solving to create practical solutions.',
   },
   {
-    icon: GraduationCap,
-    year: '2022',
-    title: 'Mulai Serius Ngoding',
+    icon: Cloud,
+    year: '3.',
+    title: 'Google Cloud Arcade Facilitator 2026',
     description:
-      'Memulai perjalanan ngoding dari HTML & CSS, lanjut ke JavaScript, React, dan terus eksplor ke dunia full-stack development.',
+      'Guiding and supporting participants throughout the Google Skills Arcade journey by sharing learning resources, answering questions, and helping them stay motivated to complete cloud learning challenges and skill badges.',
+  },
+  {
+    icon: Trophy,
+    year: '4.',
+    title: 'competition FIKSI — Digital Technology',
+    description:
+      'Participated in FIKSI in the Digital Technology field, developing innovative technology-based solutions and transforming ideas into practical products with real-world potential.',
   },
 ];
 
