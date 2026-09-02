@@ -28,7 +28,7 @@ export default function CertificateCard({ certificate, onView }: CertificateCard
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-base/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button className="px-6 py-2 bg-accent hover:opacity-90 text-[#16181d] rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+            <button className="px-6 py-2 bg-accent hover:opacity-90 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
               View Full
             </button>
           </div>
@@ -75,7 +75,7 @@ export default function CertificateCard({ certificate, onView }: CertificateCard
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-accent hover:opacity-90 text-[#16181d] rounded-lg transition-all duration-300 text-sm font-medium"
+                className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-accent hover:opacity-90 text-white rounded-lg transition-all duration-300 text-sm font-medium"
               >
                 <Download size={16} className="mr-2" />
                 Download

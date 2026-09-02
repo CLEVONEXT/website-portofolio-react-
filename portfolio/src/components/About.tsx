@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Zap, Users } from 'lucide-react';
+
 import { siteConfig } from '../config/site';
 import profileService from '../services/profileService';
 import { scrollToSection } from '../lib/utils';
@@ -37,17 +37,17 @@ export default function About() {
 
   const features = [
     {
-      icon: Code,
+
       title: 'DEVELOPER',
       description: 'Writing maintainable, scalable, and efficient code that follows best practices.',
     },
     {
-      icon: Zap,
-      title: 'IoT Enthusiast',
+
+      title: 'IoT & Robotics',
       description: 'Building innovative IoT solutions that connect the physical world with intelligent technology.',
     },
     {
-      icon: Users,
+
       title: 'Creative Technologist',
       description: 'Combining technology and creativity to transform ideas into innovative, functional, and impactful digital experiences.',
     },
@@ -98,7 +98,7 @@ export default function About() {
               enableTilt
               enableMobileTilt
               behindGlowEnabled
-              innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+              innerGradient="linear-gradient(145deg,#2d5d858c 0%,#71C4FF44 100%)"
               onContactClick={() => scrollToSection('contact')}
             />
           </motion.div>
@@ -127,7 +127,7 @@ export default function About() {
                 <p className="text-3xl font-bold text-accent">10+</p>
                 <p className="text-muted text-sm mt-2">Projects Completed</p>
               </div>
-            
+
             </div>
           </motion.div>
         </motion.div>
@@ -141,7 +141,7 @@ export default function About() {
           viewport={{ once: true }}
         >
           {features.map((feature, index) => {
-            const Icon = feature.icon;
+
             return (
               <motion.div
                 key={index}
@@ -149,7 +149,7 @@ export default function About() {
                 className="group p-8 bg-surface border border-soft rounded-xl hover:border-accent hover:bg-elevated transition-all duration-300"
               >
                 <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Icon size={24} className="text-white" />
+
                 </div>
                 <h3 className="text-xl font-bold text-strong mb-3">{feature.title}</h3>
                 <p className="text-muted leading-relaxed">{feature.description}</p>

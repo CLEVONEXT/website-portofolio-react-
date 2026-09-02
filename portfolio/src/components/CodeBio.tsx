@@ -17,8 +17,8 @@ function tokenizeLine(line: string): Token[] {
     let cls = '';
     if (match[1]) cls = 'text-gray-500 italic'; // comment
     else if (match[2] || match[3]) cls = 'text-amber-300'; // string
-    else if (match[4]) cls = 'text-fuchsia-400'; // keyword
-    else if (match[5]) cls = 'text-teal-300'; // class/type
+    else if (match[4]) cls = 'text-sky-300'; // keyword
+    else if (match[5]) cls = 'text-blue-300'; // class/type
     else if (match[6]) cls = 'text-orange-300'; // number
     else if (match[7]) cls = 'text-gray-400'; // punctuation
     tokens.push({ text: match[0], className: cls });
@@ -76,7 +76,7 @@ export default function CodeBio() {
         <div className="flex items-center gap-2 px-4 py-3 bg-elevated border-b border-soft">
           <span className="w-3 h-3 rounded-full bg-red-500/80" />
           <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <span className="w-3 h-3 rounded-full bg-green-500/80" />
+          <span className="w-3 h-3 rounded-full bg-sky-500/80" />
           <span className="ml-3 text-xs text-gray-400 font-mono">
             developer.ts
           </span>

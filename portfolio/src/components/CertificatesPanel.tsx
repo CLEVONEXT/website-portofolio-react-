@@ -48,7 +48,7 @@ export default function CertificatesPanel() {
       {/* Success Message */}
       {successMessage && (
         <motion.div
-          className="mb-8 p-4 bg-green-500/10 border border-green-500/50 rounded-lg flex items-center text-green-400"
+          className="mb-8 p-4 bg-accent-soft border border-accent rounded-lg flex items-center text-accent"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}

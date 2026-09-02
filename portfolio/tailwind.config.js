@@ -30,8 +30,8 @@ export default {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(127, 168, 160, 0.25)',
-        'glow-lg': '0 0 40px rgba(127, 168, 160, 0.35)',
+        'glow': '0 0 20px rgba(110, 168, 220, 0.25)',
+        'glow-lg': '0 0 40px rgba(110, 168, 220, 0.35)',
       },
       keyframes: {
         'float': {
@@ -39,8 +39,8 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
         'glow-pulse': {
-          '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(127, 168, 160, 0.25)' },
-          '50%': { opacity: '0.8', boxShadow: '0 0 30px rgba(127, 168, 160, 0.45)' },
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(110, 168, 220, 0.25)' },
+          '50%': { opacity: '0.8', boxShadow: '0 0 30px rgba(110, 168, 220, 0.45)' },
         },
         'shimmer': {
           '0%': { backgroundPosition: '-1000px 0' },

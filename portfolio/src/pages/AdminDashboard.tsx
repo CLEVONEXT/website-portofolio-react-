@@ -180,7 +180,7 @@ export default function AdminDashboard() {
                 className="hidden"
               />
               {profileMessage && (
-                <p className={`mt-3 text-sm ${profileMessage.includes('success') ? 'text-green-400' : 'text-red-400'}`}>
+                <p className={`mt-3 text-sm ${profileMessage.includes('success') ? 'text-accent' : 'text-red-400'}`}>
                   {profileMessage}
                 </p>
               )}

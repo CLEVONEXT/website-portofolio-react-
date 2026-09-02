@@ -87,7 +87,7 @@ export default function Footer() {
                 {siteConfig.name.split(' ')[0][0]}
               </h3>
               <p className="text-muted text-sm">
-                Building beautiful and performant web applications with modern technologies.
+                Building performant web applications with modern technologies.
               </p>
             </div>
 

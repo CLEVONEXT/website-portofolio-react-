@@ -8,7 +8,7 @@ const timeline = [
     year: '1.',
     title: 'Web Development',
     description:
-      'Building responsive and interactive websites using modern frontend technologies, with a focus on clean design and user experience.',
+      'Building responsive and user-friendly web applications using modern technologies, frameworks, and best practices to deliver high-quality digital experiences.',
   },
   {
     icon: Bot,

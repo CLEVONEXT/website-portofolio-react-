@@ -48,7 +48,7 @@ export default function ProjectsPanel() {
       {/* Success Message */}
       {successMessage && (
         <motion.div
-          className="mb-8 p-4 bg-green-500/10 border border-green-500/50 rounded-lg flex items-center text-green-400"
+          className="mb-8 p-4 bg-accent-soft border border-accent rounded-lg flex items-center text-accent"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -168,7 +168,7 @@ export default function ProjectsPanel() {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-green-400 hover:underline text-xs"
+                            className="text-accent hover:underline text-xs"
                           >
                             Demo
                           </a>
